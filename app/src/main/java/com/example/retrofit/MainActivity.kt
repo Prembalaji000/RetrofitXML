@@ -9,6 +9,7 @@ import com.example.retrofit.Adapters.RvAdapter
 import com.example.retrofit.Models.UsersItem
 import com.example.retrofit.databinding.ActivityMainBinding
 import com.example.retrofit.utils.RetrofitInstance
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rvAdapter: RvAdapter
     private lateinit var usersList: List<UsersItem>
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
