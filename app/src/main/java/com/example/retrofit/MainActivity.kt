@@ -1,9 +1,11 @@
 package com.example.retrofit
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.retrofit.Adapters.RvAdapter
 import com.example.retrofit.Models.UsersItem
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         usersList = listOf()
 
-        GlobalScope.launch(Dispatchers.IO) {
+        lifecycleScope.launch(Dispatchers.IO) {
             val response = try {
                 RetrofitInstance.api.getAllUsers()
             }catch (e: IOException){
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
                 return@launch
             }
             if (response.isSuccessful && response.body() != null){
+                Log.e("response",response.body().toString())
                 withContext(Dispatchers.Main){
                     usersList = response.body()!!
                     binding.rvMain.apply {
